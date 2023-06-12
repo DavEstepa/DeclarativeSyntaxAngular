@@ -1,0 +1,6 @@
+<div #drawingScreen *ngIf="event$ | async as event" class="drawing-screen">
+    {{event.x}} y {{event.y}}
+    <div [style.position]="'absolute'" [style.top.px]="event.x" [style.left.px]="event.y"
+    class="moving-object">
+    </div>
+</div>

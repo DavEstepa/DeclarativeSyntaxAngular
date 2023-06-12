@@ -1,0 +1,10 @@
+.drawing-screen {
+    min-height: 300px;
+    background-color: lightcyan;
+}
+
+.moving-object {
+    height: 5px;
+    width: 5px;
+    background-color: red;
+}

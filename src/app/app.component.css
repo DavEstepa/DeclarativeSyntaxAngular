@@ -9,6 +9,7 @@
     background-color: deepskyblue;;
 }
 
-.general-container{
+.general-container {
     margin-top: 70px;
+    min-height: -webkit-fill-available;
 }

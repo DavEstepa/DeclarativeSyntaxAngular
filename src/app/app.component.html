@@ -1,7 +1,9 @@
 <app-header class="header" (toggleSidenav) = "toggleOptions($event)"></app-header>
 <mat-sidenav-container class="general-container">
-    <mat-sidenav mode="side" [opened]="showOptions">Sidenav content</mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav mode="side" [opened]="showOptions" class="sidenav">
+        <h3 routerLink="/dashboard"><b>DashBoard</b></h3>
+    </mat-sidenav>
+    <mat-sidenav-content class="content">
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>

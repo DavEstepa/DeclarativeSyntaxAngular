@@ -1,0 +1,14 @@
+.parent-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .row {
+    display: flex;
+    flex-basis: 100%;
+  }
+  
+  .column {
+    flex: 1;
+    margin: 10px;
+  }
