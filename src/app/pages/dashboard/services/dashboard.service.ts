@@ -7,10 +7,10 @@ import { RelativePosition } from 'src/app/core/models/dashboard/state.model';
 })
 export class DashboardService {
   private relativePositionSubject = new Subject<RelativePosition>();
-  relativePositionAction$ = this.relativePositionSubject.asObservable();
+  private relativePositionAction$ = this.relativePositionSubject.asObservable();
   
   relativePosition$ = this.relativePositionAction$.pipe(tap(console.log))
-  constructor() { }
+  constructor() { console.info('DashboardService Initialized') }
 
   updateRelativePosition(newCoords: RelativePosition){
     this.relativePositionSubject.next(newCoords);

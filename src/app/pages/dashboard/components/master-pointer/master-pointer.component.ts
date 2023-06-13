@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { filter, fromEvent, map, switchMap, takeUntil, takeWhile, tap } from 'rxjs';
 import { RelativePosition } from 'src/app/core/models/dashboard/state.model';
+import { DashboardService } from '../../services/dashboard.service';
 
 @Component({
   selector: 'app-master-pointer',
@@ -8,6 +9,8 @@ import { RelativePosition } from 'src/app/core/models/dashboard/state.model';
   styleUrls: ['./master-pointer.component.css']
 })
 export class MasterPointerComponent {
+  constructor(private service: DashboardService){}
+
   private drawingZone: string = 'drawing-screen'
   private drawingZoneActive: boolean = false
   @ViewChild('drawingScreen') element?: ElementRef;
@@ -36,6 +39,7 @@ export class MasterPointerComponent {
     // console.log(event.clientX - origin.left, event.clientY - origin.top)
     // return {x: event.clientX - origin.left, y: event.clientY - origin.top}
     let coordinates = getCoordinates(origin, event.clientX, event.clientY)
+    this.service.updateRelativePosition({x: coordinates[0], y: coordinates[1]})
     return {x: coordinates[0], y: coordinates[1]}
 
   }
