@@ -7,7 +7,8 @@ import {MatCardModule} from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MasterPointerComponent } from './components/master-pointer/master-pointer.component';
 import { BasicChartLineComponent } from './components/basic-chart-line/basic-chart-line.component';
-
+import { ChartModule } from 'primeng/chart';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import { BasicChartLineComponent } from './components/basic-chart-line/basic-cha
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    MatCardModule
+    MatCardModule,
+    ChartModule,
+    MatButtonModule
   ]
 })
 export class DashboardModule { }

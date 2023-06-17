@@ -1,3 +1,4 @@
-<h1 *ngIf="actualCoords$ | async as actualCoords">
-    Posición Horizontal: {{actualCoords.x}} , Posición Vertical: {{actualCoords.y}}
-</h1>
+<div *ngIf="actualCoords$ | async as actualCoords">
+    <button mat-raised-button color="primary" (click)="resetChart()">Reset</button>
+    <p-chart type="line" [data]="data" [options]="options"></p-chart>
+</div>
