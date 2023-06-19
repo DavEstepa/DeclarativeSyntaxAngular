@@ -4,6 +4,8 @@ import { options } from 'src/app/core/helpers/variables/nav-options'
 import { NavigationEnd, Router } from '@angular/router';
 import { map } from 'rxjs';
 
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,6 +17,8 @@ export class AppComponent {
   options: NavigationOption[] = options;
   selectedOption?: NavigationOption;
 
+  faCoffee = faCoffee;
+  
   eventRouter$ = this.router.events.pipe(
     map((props) => this.catchNavigation(props))
   )
@@ -37,6 +41,7 @@ export class AppComponent {
 
   catchNavigation(props: any){
     if(props instanceof NavigationEnd){
+      console.log('Navigation Complete!!!')
       this.selectedOption = this.options.filter((op: NavigationOption)=> op.path == props.urlAfterRedirects)[0]
     }
     return true

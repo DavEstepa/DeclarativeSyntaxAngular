@@ -13,6 +13,13 @@ const routes: Routes = [
         (it) => it.DashboardModule
       ),
   },
+  {
+    path: 'list-icons',
+    loadChildren: () =>
+      import('./pages/fontawesome-icons/fontawesome-icons.module').then(
+        (it) => it.FontawesomeIconsModule
+      ),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: UnauthorizedComponent }
 ];
