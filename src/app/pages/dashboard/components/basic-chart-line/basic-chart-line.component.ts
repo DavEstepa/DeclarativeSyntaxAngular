@@ -21,32 +21,53 @@ export class BasicChartLineComponent implements OnInit {
   options: any
 
   ngOnInit() {
+    this.updateDataChart()
+    this.updateOptionsChart()
+  }
+
+  updateLineChart(newCoords: RelativePosition){
+    this.coords.x = [...this.coords.x, newCoords.x]
+    this.coords.y = [...this.coords.y, newCoords.y]
+    this.labels = [...this.labels, this.coords.x.length]
+    this.updateDataChart()
+    return newCoords
+  }
+
+  resetChart(){
+    console.log('Chart reset')
+    this.coords = {x: [], y: []}
+    this.labels = []
+    this.updateDataChart()
+  }
+
+  updateDataChart(){
+    const documentStyle = getComputedStyle(document.documentElement);
+    this.data = {
+        labels: this.labels,
+        datasets: [
+            {
+                label: 'Posición Horizontal',
+                data: this.coords.x,
+                fill: false,
+                borderColor: documentStyle.getPropertyValue('--blue-500'),
+                tension: 0.4
+            },
+            {
+                label: 'Posición Vertical',
+                data: this.coords.y,
+                fill: false,
+                borderColor: documentStyle.getPropertyValue('--pink-500'),
+                tension: 0.4
+            }
+        ]
+      }
+  }
+
+  updateOptionsChart(){
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
     const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-
-    this.data = {
-      labels: this.labels,
-      datasets: [
-          {
-              label: 'Posición Horizontal',
-              data: this.coords.x,
-              fill: false,
-              borderColor: '#3f51b5',
-              tension: 0.4
-          },
-          {
-              label: 'Posición Vertical',
-              data: this.coords.y,
-              fill: false,
-              borderColor: documentStyle.getPropertyValue('--pink-500'),
-              tension: 0.4
-          }
-      ]
-    };
-
-    
 
     this.options = {
         maintainAspectRatio: false,
@@ -78,59 +99,6 @@ export class BasicChartLineComponent implements OnInit {
                 }
             }
         }
-    };
-  }
-
-  updateLineChart(newCoords: RelativePosition){
-    const documentStyle = getComputedStyle(document.documentElement);
-    this.coords.x = [...this.coords.x, newCoords.x]
-    this.coords.y = [...this.coords.y, newCoords.y]
-    this.labels = [...this.labels, this.coords.x.length]
-    this.data = {
-      labels: this.labels,
-      datasets: [
-          {
-              label: 'Posición Horizontal',
-              data: this.coords.x,
-              fill: false,
-              borderColor: documentStyle.getPropertyValue('--blue-500'),
-              tension: 0.4
-          },
-          {
-              label: 'Posición Vertical',
-              data: this.coords.y,
-              fill: false,
-              borderColor: documentStyle.getPropertyValue('--pink-500'),
-              tension: 0.4
-          }
-      ]
-    };
-    return newCoords
-  }
-
-  resetChart(){
-    console.log('Chart reset')
-    const documentStyle = getComputedStyle(document.documentElement);
-    this.coords = {x: [], y: []}
-    this.labels = []
-    this.data = {
-      labels: this.labels,
-      datasets: [
-          {
-              label: 'Posición Horizontal',
-              data: this.coords.x,
-              fill: false,
-              borderColor: documentStyle.getPropertyValue('--blue-500'),
-              tension: 0.4
-          },
-          {
-              label: 'Posición Vertical',
-              data: this.coords.y,
-              fill: false,
-              borderColor: documentStyle.getPropertyValue('--pink-500'),
-              tension: 0.4
-          }
-      ]
-    };
+    }
   }
 }

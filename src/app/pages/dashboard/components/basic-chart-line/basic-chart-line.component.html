@@ -1,4 +1,10 @@
-<div *ngIf="actualCoords$ | async as actualCoords">
+<div *ngIf="actualCoords$ | async as actualCoords; else loading">
     <button mat-raised-button color="primary" (click)="resetChart()">Reset</button>
     <p-chart type="line" [data]="data" [options]="options"></p-chart>
 </div>
+
+<ng-template #loading>
+    <div>
+        <h1>No se ha desplazado el recuadro</h1>
+    </div>
+</ng-template>

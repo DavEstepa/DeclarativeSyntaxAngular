@@ -1,7 +1,19 @@
 <app-header class="header" (toggleSidenav) = "toggleOptions($event)"></app-header>
+<header class="container-title">
+    <h1 *ngIf="eventRouter$ | async as event" class="general-title">
+        {{selectedOption?selectedOption.name:'Cargando...'}}
+    </h1>
+</header>
 <mat-sidenav-container class="general-container">
     <mat-sidenav mode="side" [opened]="showOptions" class="sidenav">
-        <h3 routerLink="/dashboard"><b>DashBoard</b></h3>
+        <mat-nav-list>
+            <a mat-list-item *ngFor="let option of options"
+            [routerLink]="option.path"
+            [activated]="evalActivatedOption(option)"
+            (click)="selectOption(option)">
+                {{ option.name }}
+            </a>
+        </mat-nav-list>        
     </mat-sidenav>
     <mat-sidenav-content class="content">
         <router-outlet></router-outlet>

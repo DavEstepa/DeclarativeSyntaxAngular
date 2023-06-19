@@ -6,10 +6,23 @@
     height: 50px;
     z-index: 2;
     box-shadow: 0 3px 5px -1px #0003, 0 6px 10px #00000024, 0 1px 18px #0000001f;
-    background-color: #3f51b5;;
+    background-color: #3f51b5;
 }
 
 .general-container {
-    margin-top: 70px;
     min-height: -webkit-fill-available;
+}
+
+.general-title {
+    font-weight: 300;
+    margin: 0;
+    padding: 28px 8px;
+    font-size: 20px;
+    background-color: #3f51b5;
+    color: white;
+}
+
+.container-title {
+    margin-top: 50px;
+    align-items: center;
 }
