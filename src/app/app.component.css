@@ -16,7 +16,7 @@
 .general-title {
     font-weight: 300;
     margin: 0;
-    padding: 28px 8px;
+    padding: 20px;
     font-size: 20px;
     background-color: #3f51b5;
     color: white;
@@ -25,4 +25,40 @@
 .container-title {
     margin-top: 50px;
     align-items: center;
+    background-color: #3f51b5;
+}
+
+.parent-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+.row {
+display: flex;
+flex-basis: 100%;
+}
+
+.column {
+margin: 10px;
+align-self: center;
+}
+
+.header-info{
+    margin-bottom: 0px;
+}
+
+.footer {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #3f51b5;
+    color: white
+}
+
+.button-container{
+    text-align: center;
+}
+
+.button-control{
+    margin: 10px;
 }

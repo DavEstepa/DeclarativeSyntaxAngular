@@ -8,6 +8,7 @@ import { CoreModule } from './core/core.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
     CoreModule,
     MatSidenavModule,
     MatListModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

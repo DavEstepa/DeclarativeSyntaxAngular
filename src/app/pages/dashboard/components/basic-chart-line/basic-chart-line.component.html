@@ -1,5 +1,8 @@
 <div *ngIf="actualCoords$ | async as actualCoords; else loading">
-    <button mat-raised-button color="primary" (click)="resetChart()">Reset</button>
+    <div class="button-container">
+        <button class="button-control" mat-raised-button color="primary" (click)="resetChart()">Reset</button>
+        <button class="button-control"mat-raised-button color="warn" (click)="toggleTimeWindows()">{{!timeWindow?"Use Time Window":"Don't use Time Window"}}</button>
+    </div>
     <p-chart type="line" [data]="data" [options]="options"></p-chart>
 </div>
 

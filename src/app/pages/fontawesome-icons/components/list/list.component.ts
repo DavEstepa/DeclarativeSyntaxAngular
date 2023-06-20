@@ -16,7 +16,7 @@ export class ListComponent {
   displayedColumns: string[] = ['icon', 'name', 'property1', 'property2'];
   dataSource = new MatTableDataSource<IconDefinition>(this.iconList)
 
-  @ViewChild(MatPaginator) paginator?: MatPaginator;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private dialog: MatDialog){
     console.log('List component created')

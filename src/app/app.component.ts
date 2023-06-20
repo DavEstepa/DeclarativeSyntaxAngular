@@ -4,7 +4,7 @@ import { options } from 'src/app/core/helpers/variables/nav-options'
 import { NavigationEnd, Router } from '@angular/router';
 import { map } from 'rxjs';
 
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition, faChartLine, faHouse, faRectangleList, faCode } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +16,8 @@ export class AppComponent {
   title = 'declarative-syntax-study';
   options: NavigationOption[] = options;
   selectedOption?: NavigationOption;
-
-  faCoffee = faCoffee;
+  avilableIcons: IconDefinition[] = [faChartLine, faHouse, faRectangleList]
+  faCode = faCode;
   
   eventRouter$ = this.router.events.pipe(
     map((props) => this.catchNavigation(props))
@@ -37,6 +37,10 @@ export class AppComponent {
 
   selectOption(option: NavigationOption){
     this.selectedOption = option
+  }
+
+  selectIcon(option: NavigationOption){
+    return this.avilableIcons.filter(ic => ic.iconName == option.iconName)[0]
   }
 
   catchNavigation(props: any){

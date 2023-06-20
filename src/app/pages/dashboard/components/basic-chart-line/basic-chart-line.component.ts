@@ -19,16 +19,33 @@ export class BasicChartLineComponent implements OnInit {
   coords: {x: number[], y: number[]} = {x: [], y: []}
   labels: number[] = []
   options: any
+  timeWindow = false
 
   ngOnInit() {
     this.updateDataChart()
     this.updateOptionsChart()
   }
 
+  toggleTimeWindows(){
+    this.timeWindow = !this.timeWindow
+  }
+
   updateLineChart(newCoords: RelativePosition){
-    this.coords.x = [...this.coords.x, newCoords.x]
-    this.coords.y = [...this.coords.y, newCoords.y]
-    this.labels = [...this.labels, this.coords.x.length]
+    if(this.labels.length >50 && this.timeWindow){
+      this.coords.x.shift()
+      this.coords.y.shift()
+      this.labels.shift()
+      this.coords.x.push(newCoords.x)
+      this.coords.y.push(newCoords.y)
+      this.labels.push(this.labels[this.labels.length - 1] + 1)
+    }
+    else{
+      this.coords.x = [...this.coords.x, newCoords.x]
+      this.coords.y = [...this.coords.y, newCoords.y]
+      let newLabelValue = this.labels.length == 0?0:(this.labels[this.labels.length - 1] + 1)
+      this.labels = [...this.labels, newLabelValue]
+    }
+
     this.updateDataChart()
     return newCoords
   }
@@ -49,14 +66,14 @@ export class BasicChartLineComponent implements OnInit {
                 label: 'Posición Horizontal',
                 data: this.coords.x,
                 fill: false,
-                borderColor: documentStyle.getPropertyValue('--blue-500'),
+                borderColor: documentStyle.getPropertyValue('--primary-color'),
                 tension: 0.4
             },
             {
                 label: 'Posición Vertical',
                 data: this.coords.y,
                 fill: false,
-                borderColor: documentStyle.getPropertyValue('--pink-500'),
+                borderColor: '#f44336',
                 tension: 0.4
             }
         ]

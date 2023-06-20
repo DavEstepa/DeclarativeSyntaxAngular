@@ -1,9 +1,23 @@
 <app-header class="header" (toggleSidenav) = "toggleOptions($event)"></app-header>
-<header class="container-title">
-    <h1 *ngIf="eventRouter$ | async as event" class="general-title">
-        {{selectedOption?selectedOption.name:'Cargando...'}}
-    </h1>
-</header>
+<div class="container-title">
+    <div *ngIf="eventRouter$ | async as event" class="general-title parent-container">
+        <div class="row">
+            <div class="column">
+                <fa-icon
+                *ngIf="selectedOption"
+                [icon]="selectIcon(selectedOption)"
+                [fixedWidth]="true"
+                class="primary-icon">
+                </fa-icon>
+            </div>
+            <div class="column">
+                <h1 class="header-info">
+                    {{selectedOption?selectedOption.name:'Loading...'}}
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
 <mat-sidenav-container class="general-container">
     <mat-sidenav mode="side" [opened]="showOptions" class="sidenav">
         <mat-nav-list>
@@ -11,6 +25,11 @@
             [routerLink]="option.path"
             [activated]="evalActivatedOption(option)"
             (click)="selectOption(option)">
+                <fa-icon
+                [icon]="selectIcon(option)"
+                [fixedWidth]="true"
+                class="primary-icon">
+                </fa-icon>
                 {{ option.name }}
             </a>
         </mat-nav-list>        
@@ -19,4 +38,10 @@
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
-<app-footer></app-footer>
+<footer class="footer">
+    <div class="button-container" style="text-align:center; padding: 20px;">
+        <fa-icon class="button-control" [icon]="faCode" size="3x"></fa-icon>
+        <h1 class="button-control" style="margin-bottom: 0px;"><a href="https://github.com/DavEstepa/DeclarativeSyntaxAngular"
+        style="text-decoration: none;color: inherit;">Source Code</a></h1>
+    </div>
+</footer>
