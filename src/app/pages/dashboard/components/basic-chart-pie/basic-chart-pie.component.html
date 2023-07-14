@@ -1,0 +1,9 @@
+<div *ngIf="selectedCoords$ | async as actualCoords; else loading">
+    {{actualCoords.x}} y {{actualCoords.y}}
+</div>
+
+<ng-template #loading>
+    <div>
+        <h1>No se ha seleccionado un punto de referencia</h1>
+    </div>
+</ng-template>

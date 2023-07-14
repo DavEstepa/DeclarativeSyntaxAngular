@@ -10,9 +10,17 @@ export class DashboardService {
   private relativePositionAction$ = this.relativePositionSubject.asObservable();
   
   relativePosition$ = this.relativePositionAction$.pipe(tap(console.log))
+
+  private studyPositionSubject = new Subject<RelativePosition>();
+  public studyPositionAction$ = this.studyPositionSubject.asObservable();
+  
   constructor() { console.info('DashboardService Initialized') }
 
   updateRelativePosition(newCoords: RelativePosition){
     this.relativePositionSubject.next(newCoords);
+  }
+
+  updateStudyPosition(newCoords: RelativePosition){
+    this.studyPositionSubject.next(newCoords);
   }
 }

@@ -26,6 +26,11 @@ export class BasicChartLineComponent implements OnInit {
     this.updateOptionsChart()
   }
 
+  selectedData(event: any){
+    console.log(event)
+    this.service.updateStudyPosition(event)
+  }
+
   toggleTimeWindows(){
     this.timeWindow = !this.timeWindow
   }
@@ -87,6 +92,9 @@ export class BasicChartLineComponent implements OnInit {
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
     this.options = {
+          animation: {
+            duration: 0
+        },
         maintainAspectRatio: false,
         aspectRatio: 0.6,
         plugins: {

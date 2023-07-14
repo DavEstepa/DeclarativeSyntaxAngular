@@ -4,7 +4,7 @@ import { options } from 'src/app/core/helpers/variables/nav-options'
 import { NavigationEnd, Router } from '@angular/router';
 import { map } from 'rxjs';
 
-import { IconDefinition, faChartLine, faHouse, faRectangleList, faCode } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition, faChartLine, faHouse, faRectangleList, faCode, faArrowsUpDownLeftRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ export class AppComponent {
   title = 'declarative-syntax-study';
   options: NavigationOption[] = options;
   selectedOption?: NavigationOption;
-  avilableIcons: IconDefinition[] = [faChartLine, faHouse, faRectangleList]
+  avilableIcons: IconDefinition[] = [faChartLine, faHouse, faRectangleList, faArrowsUpDownLeftRight]
   faCode = faCode;
   
   eventRouter$ = this.router.events.pipe(

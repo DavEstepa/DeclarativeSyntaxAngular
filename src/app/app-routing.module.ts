@@ -20,6 +20,13 @@ const routes: Routes = [
         (it) => it.FontawesomeIconsModule
       ),
   },
+  {
+    path: 'push-keys',
+    loadChildren: () =>
+      import('./pages/push-arrow-keys/push-arrow-keys.module').then(
+        (it) => it.PushArrowKeysModule
+      ),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: UnauthorizedComponent }
 ];

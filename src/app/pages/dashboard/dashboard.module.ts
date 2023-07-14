@@ -9,12 +9,14 @@ import { MasterPointerComponent } from './components/master-pointer/master-point
 import { BasicChartLineComponent } from './components/basic-chart-line/basic-chart-line.component';
 import { ChartModule } from 'primeng/chart';
 import {MatButtonModule} from '@angular/material/button';
+import { BasicChartPieComponent } from './components/basic-chart-pie/basic-chart-pie.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     MasterPointerComponent,
-    BasicChartLineComponent
+    BasicChartLineComponent,
+    BasicChartPieComponent
   ],
   imports: [
     CommonModule,

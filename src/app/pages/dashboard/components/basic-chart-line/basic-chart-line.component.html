@@ -3,7 +3,7 @@
         <button class="button-control" mat-raised-button color="primary" (click)="resetChart()">Reset</button>
         <button class="button-control"mat-raised-button color="warn" (click)="toggleTimeWindows()">{{!timeWindow?"Use Time Window":"Don't use Time Window"}}</button>
     </div>
-    <p-chart type="line" [data]="data" [options]="options"></p-chart>
+    <p-chart type="line" (onDataSelect)="selectedData($event)" [data]="data" [options]="options"></p-chart>
 </div>
 
 <ng-template #loading>
