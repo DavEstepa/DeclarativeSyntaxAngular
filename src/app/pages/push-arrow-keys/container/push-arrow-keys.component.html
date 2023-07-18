@@ -1,1 +1,16 @@
-<p>push-arrow-keys works!</p>
+<h1>WIP</h1>
+<mat-grid-list cols="1" rowHeight="500px">
+    <mat-grid-tile>
+        <div class="cloud" *ngFor="let item of getArray(5);" (click)="selectDiv($event)">
+            hola
+        </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+<div #drawingScreen *ngIf="event$ | async as event" class="drawing-screen">
+    <!-- <div [style.position]="'relative'" [style.top.px]="event.y" [style.left.px]="event.x"
+    class="moving-object">
+    </div> -->
+    <div style="position: relative;">
+        <app-main-layout></app-main-layout>
+    </div>
+</div>
