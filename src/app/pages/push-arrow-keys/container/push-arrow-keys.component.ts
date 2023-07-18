@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { fromEvent, map, switchMap, takeUntil } from 'rxjs';
+import { filter, fromEvent, map, switchMap, takeUntil, tap } from 'rxjs';
+import { PushArrowKeysService } from '../services/push-arrow-keys.service';
 
 @Component({
   selector: 'app-push-arrow-keys',
@@ -7,20 +8,21 @@ import { fromEvent, map, switchMap, takeUntil } from 'rxjs';
   styleUrls: ['./push-arrow-keys.component.css']
 })
 export class PushArrowKeysComponent {
+  constructor(private service: PushArrowKeysService){}
+  
   currentSelectedElement!: HTMLElement
+  moving = false
   event$ = fromEvent(document, 'keydown').pipe(
-    map((val)=>this.moveObjective(val))
+    filter(()=>this.currentSelectedElement?true:false),
+    tap((val)=>this.moveObjective(val))
   )
 
   moveObjective(event: any){
     console.log(event)
-    if(this.currentSelectedElement){
-      console.log(window.getComputedStyle(this.currentSelectedElement).top)
-      let actualVal = window.getComputedStyle(this.currentSelectedElement).top
-      let newPosition = parseInt(actualVal.replace('px', ''), 10) + 1
-      this.currentSelectedElement.style.top = newPosition.toString() + 'px'
-    }
-    return event
+    console.log(window.getComputedStyle(this.currentSelectedElement).top)
+    let actualVal = window.getComputedStyle(this.currentSelectedElement).top
+    let newPosition = parseInt(actualVal.replace('px', ''), 10) + 1
+    this.currentSelectedElement.style.top = newPosition.toString() + 'px'
   }
 
   getArray(clouds: number): number[] {
@@ -35,5 +37,10 @@ export class PushArrowKeysComponent {
   selectDiv(event: any){
     this.currentSelectedElement = event.target as HTMLElement;
     console.log(window.getComputedStyle(this.currentSelectedElement).left)
+  }
+
+  toggleControl(){
+    this.moving = !this.moving
+    this.service.showScrollBar(this.moving)
   }
 }
