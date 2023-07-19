@@ -6,12 +6,14 @@ import { PushArrowKeysComponent } from './container/push-arrow-keys.component';
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
+import { GeneralSceneComponent } from './components/general-scene/general-scene.component';
 
 
 @NgModule({
   declarations: [
     PushArrowKeysComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    GeneralSceneComponent
   ],
   imports: [
     CommonModule,
