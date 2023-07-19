@@ -5,6 +5,7 @@ import { PushArrowKeysRoutingModule } from './push-arrow-keys-routing.module';
 import { PushArrowKeysComponent } from './container/push-arrow-keys.component';
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
   imports: [
     CommonModule,
     PushArrowKeysRoutingModule,
-    MatGridListModule
+    MatGridListModule,
+    MatButtonModule
   ]
 })
 export class PushArrowKeysModule { }

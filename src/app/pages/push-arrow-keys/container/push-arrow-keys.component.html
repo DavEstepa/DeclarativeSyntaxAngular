@@ -1,17 +1,22 @@
 <h1>WIP</h1>
-<button (click)="toggleControl()">Ocultar</button>
+
 <mat-grid-list cols="1" rowHeight="500px">
     <mat-grid-tile>
-        <div class="cloud" *ngFor="let item of getArray(5);" (click)="selectDiv($event)">
-            hola
+
+        <div *ngIf="moving; else pause">
+            <button mat-raised-button
+            style="position: relative;
+                   top: 0;
+                   left: 0;" (click)="toggleControl(options.Pause)">Pause</button>
+            <div class="cloud" *ngFor="let item of getArray(5);" (click)="selectDiv($event)">
+                hola
+            </div>
         </div>
+        <ng-template #pause>
+            <app-main-layout (controlScene)="toggleControl($event)" ></app-main-layout>
+        </ng-template>
+
     </mat-grid-tile>
-  </mat-grid-list>
+</mat-grid-list>
 <div #drawingScreen *ngIf="event$ | async as event" class="drawing-screen">
-    <!-- <div [style.position]="'relative'" [style.top.px]="event.y" [style.left.px]="event.x"
-    class="moving-object">
-    </div> -->
-    <div style="position: relative;">
-        <app-main-layout></app-main-layout>
-    </div>
 </div>

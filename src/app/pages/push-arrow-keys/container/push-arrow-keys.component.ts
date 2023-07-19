@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { filter, fromEvent, map, switchMap, takeUntil, tap } from 'rxjs';
 import { PushArrowKeysService } from '../services/push-arrow-keys.service';
+import { PauseOptions } from 'src/app/core/helpers/enums/pause-options';
 
 @Component({
   selector: 'app-push-arrow-keys',
@@ -12,6 +13,7 @@ export class PushArrowKeysComponent {
   
   currentSelectedElement!: HTMLElement
   moving = false
+  options = PauseOptions
   event$ = fromEvent(document, 'keydown').pipe(
     filter(()=>this.currentSelectedElement?true:false),
     tap((val)=>this.moveObjective(val))
@@ -39,8 +41,24 @@ export class PushArrowKeysComponent {
     console.log(window.getComputedStyle(this.currentSelectedElement).left)
   }
 
-  toggleControl(){
-    this.moving = !this.moving
-    this.service.showScrollBar(this.moving)
+  toggleControl(event: PauseOptions){
+    switch (event) {
+      case PauseOptions.Continue:
+        this.service.showScrollBar(false)
+        this.moving = true
+        break;
+      case PauseOptions.Settings:
+        console.log("Settings Opened!!!")
+        break;
+      case PauseOptions.Restart:
+        console.log("Restart Opened!!!")
+        break;
+      case PauseOptions.Pause:
+        this.service.showScrollBar(true)
+        this.moving = false
+        break;
+      default:
+        break;
+    }
   }
 }
