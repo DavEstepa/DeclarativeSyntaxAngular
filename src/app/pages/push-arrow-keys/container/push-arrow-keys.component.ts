@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { PushArrowKeysService } from '../services/push-arrow-keys.service';
 import { PauseOptions } from 'src/app/core/helpers/enums/pause-options';
 
@@ -7,7 +7,7 @@ import { PauseOptions } from 'src/app/core/helpers/enums/pause-options';
   templateUrl: './push-arrow-keys.component.html',
   styleUrls: ['./push-arrow-keys.component.css']
 })
-export class PushArrowKeysComponent {
+export class PushArrowKeysComponent implements OnDestroy {
   constructor(private service: PushArrowKeysService){}
   
   moving = false
@@ -32,5 +32,9 @@ export class PushArrowKeysComponent {
       default:
         break;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.service.showScrollBar(true)
   }
 }

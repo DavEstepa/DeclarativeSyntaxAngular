@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { filter, fromEvent, map, switchMap, takeUntil, tap } from 'rxjs';
+import { AvailableKeys } from 'src/app/core/helpers/enums/available-keys';
 import { PauseOptions } from 'src/app/core/helpers/enums/pause-options';
 
 @Component({
@@ -23,10 +24,9 @@ export class GeneralSceneComponent {
   moveObjective(event: any){
     if(this.currentSelectedElement){
       console.log(event)
+      this.evalKeys(event)
       console.log(window.getComputedStyle(this.currentSelectedElement).top)
-      let actualVal = window.getComputedStyle(this.currentSelectedElement).top
-      let newPosition = parseInt(actualVal.replace('px', ''), 10) + 1
-      this.currentSelectedElement.style.top = newPosition.toString() + 'px'
+
     }
   }
 
@@ -42,5 +42,42 @@ export class GeneralSceneComponent {
   selectDiv(event: any){
     this.currentSelectedElement = event.target as HTMLElement;
     console.log(window.getComputedStyle(this.currentSelectedElement).left)
+  }
+
+  evalKeys(event: KeyboardEvent){
+    let actualVal: string
+    let newPosition: number
+    switch (event.code) {
+      case AvailableKeys.Up:
+        console.log('UP')
+        actualVal = window.getComputedStyle(this.currentSelectedElement).top
+        newPosition = parseInt(actualVal.replace('px', ''), 10) - 1
+        this.currentSelectedElement.style.top = newPosition.toString() + 'px'
+        break;
+      case AvailableKeys.Down:
+        console.log('DOWN')
+        actualVal = window.getComputedStyle(this.currentSelectedElement).top
+        newPosition = parseInt(actualVal.replace('px', ''), 10) + 1
+        this.currentSelectedElement.style.top = newPosition.toString() + 'px'
+        break;
+      case AvailableKeys.Left:
+        console.log('LEFT')
+        actualVal = window.getComputedStyle(this.currentSelectedElement).left
+        newPosition = parseInt(actualVal.replace('px', ''), 10) - 1
+        this.currentSelectedElement.style.left = newPosition.toString() + 'px'
+        break;
+      case AvailableKeys.Right:
+        console.log('RIGHT')
+        actualVal = window.getComputedStyle(this.currentSelectedElement).left
+        newPosition = parseInt(actualVal.replace('px', ''), 10) + 1
+        this.currentSelectedElement.style.left = newPosition.toString() + 'px'
+        break;
+      case AvailableKeys.Escape:
+        console.log('ESCAPE')
+        this.controlScene.emit(PauseOptions.Pause)
+        break;
+      default:
+        break;
+    }
   }
 }

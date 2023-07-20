@@ -1,8 +1,4 @@
 <div #drawingScreen *ngIf="event$ | async as event; else preview" class="drawing-screen">
-    <button mat-raised-button
-    style="position: relative;
-           top: 0;
-           left: 0;" (click)="pause()">Pause</button>
     <div class="cloud" *ngFor="let item of getArray(5);" (click)="selectDiv($event)">
         hola
     </div>
